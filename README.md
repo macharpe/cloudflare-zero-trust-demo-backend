@@ -192,6 +192,71 @@ For issues specific to this backend infrastructure, check:
 - Resource status: `terraform refresh`
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.12.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws) | ~> 6.0 |
+| <a name="requirement_random"></a> [random](#requirement_random) | ~> 3.4 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider_aws) | ~> 6.0 |
+| <a name="provider_random"></a> [random](#provider_random) | ~> 3.4 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_cloudwatch_metric_alarm.dynamodb_errors](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
+| [aws_dynamodb_table.terraform_state_lock](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
+| [aws_iam_policy.terraform_state_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_s3_bucket.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_lifecycle_configuration.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration) | resource |
+| [aws_s3_bucket_notification.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_notification) | resource |
+| [aws_s3_bucket_public_access_block.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
+| [aws_s3_bucket_server_side_encryption_configuration.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
+| [aws_s3_bucket_versioning.terraform_state](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
+| [random_id.backend_suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_additional_tags"></a> [additional_tags](#input_additional_tags) | Additional tags to apply to all backend resources | `map(string)` | `{}` | no |
+| <a name="input_aws_region"></a> [aws_region](#input_aws_region) | AWS region for backend infrastructure deployment | `string` | `"eu-central-1"` | no |
+| <a name="input_create_iam_policy"></a> [create_iam_policy](#input_create_iam_policy) | Whether to create an IAM policy for Terraform state access | `bool` | `true` | no |
+| <a name="input_dynamodb_point_in_time_recovery"></a> [dynamodb_point_in_time_recovery](#input_dynamodb_point_in_time_recovery) | Enable point-in-time recovery for DynamoDB table (adds cost but provides backup) | `bool` | `false` | no |
+| <a name="input_dynamodb_table_name"></a> [dynamodb_table_name](#input_dynamodb_table_name) | Name of the DynamoDB table for Terraform state locking | `string` | `"tf-state-lock-cf-zero-trust"` | no |
+| <a name="input_enable_monitoring"></a> [enable_monitoring](#input_enable_monitoring) | Enable CloudWatch monitoring for backend resources | `bool` | `false` | no |
+| <a name="input_enable_s3_encryption"></a> [enable_s3_encryption](#input_enable_s3_encryption) | Enable server-side encryption on the S3 bucket | `bool` | `true` | no |
+| <a name="input_enable_s3_versioning"></a> [enable_s3_versioning](#input_enable_s3_versioning) | Enable versioning on the S3 bucket | `bool` | `true` | no |
+| <a name="input_environment"></a> [environment](#input_environment) | Environment name for resource tagging | `string` | `"demo"` | no |
+| <a name="input_owner"></a> [owner](#input_owner) | Owner of the backend infrastructure | `string` | `"macharpe"` | no |
+| <a name="input_project_name"></a> [project_name](#input_project_name) | Name of the project using this backend | `string` | `"cloudflare-zero-trust-demo"` | no |
+| <a name="input_s3_bucket_prefix"></a> [s3_bucket_prefix](#input_s3_bucket_prefix) | Prefix for S3 bucket name (will be combined with random suffix) | `string` | `"tf-state-cf-zero-trust"` | no |
+| <a name="input_state_version_retention_days"></a> [state_version_retention_days](#input_state_version_retention_days) | Number of days to retain old versions of Terraform state files | `number` | `30` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_aws_region"></a> [aws_region](#output_aws_region) | AWS region where backend infrastructure is deployed |
+| <a name="output_backend_configuration_snippet"></a> [backend_configuration_snippet](#output_backend_configuration_snippet) | Backend configuration snippet for the main demo project |
+| <a name="output_dynamodb_table_arn"></a> [dynamodb_table_arn](#output_dynamodb_table_arn) | ARN of the DynamoDB table for state locking |
+| <a name="output_dynamodb_table_name"></a> [dynamodb_table_name](#output_dynamodb_table_name) | Name of the DynamoDB table for state locking |
+| <a name="output_iam_policy_arn"></a> [iam_policy_arn](#output_iam_policy_arn) | ARN of the IAM policy for Terraform state access (if created) |
+| <a name="output_project_summary"></a> [project_summary](#output_project_summary) | Summary of backend infrastructure configuration and costs |
+| <a name="output_s3_bucket_arn"></a> [s3_bucket_arn](#output_s3_bucket_arn) | ARN of the S3 bucket for Terraform state storage |
+| <a name="output_s3_bucket_name"></a> [s3_bucket_name](#output_s3_bucket_name) | Name of the S3 bucket for Terraform state storage |
+| <a name="output_s3_bucket_region"></a> [s3_bucket_region](#output_s3_bucket_region) | AWS region where the S3 bucket is deployed |
 <!-- END_TF_DOCS -->
 
 ---
