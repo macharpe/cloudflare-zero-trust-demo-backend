@@ -28,7 +28,7 @@ Backend Infrastructure (Persistent)
 
 ## Cost Analysis
 
-**Estimated Monthly Costs** (US East-1):
+**Estimated Monthly Costs** (eu-central-1):
 - S3 Storage (~1-5MB): < $0.01
 - S3 Requests (~50 ops): < $0.01
 - DynamoDB (~100 ops): < $0.01
@@ -66,7 +66,7 @@ terraform {
   backend "s3" {
     bucket         = "tf-state-cf-zero-trust-XXXXXXXX"  # From output
     key            = "demo/terraform.tfstate"
-    region         = "us-east-1"
+    region         = "eu-central-1"
     dynamodb_table = "tf-state-lock-cf-zero-trust"
     encrypt        = true
   }
@@ -93,7 +93,7 @@ terraform init -migrate-state
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `aws_region` | `us-east-1` | AWS region for backend |
+| `aws_region` | `eu-central-1` | AWS region for backend |
 | `dynamodb_table_name` | `tf-state-lock-cf-zero-trust` | DynamoDB table name |
 | `state_version_retention_days` | `30` | S3 version retention |
 | `project_name` | `cloudflare-zero-trust-demo` | Project identifier |
