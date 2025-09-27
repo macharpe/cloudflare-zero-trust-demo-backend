@@ -1,0 +1,32 @@
+#======================================================
+# Backend Infrastructure Configuration
+# Purpose: Terraform state management for Cloudflare Zero Trust Demo
+#======================================================
+
+# AWS Configuration
+aws_region = "eu-central-1"
+
+# Backend Resource Names
+dynamodb_table_name = "tf-state-lock-<project-name>"
+s3_bucket_prefix    = "tf-state-<project-name>"
+
+# Cost Optimization Settings
+state_version_retention_days    = 30
+dynamodb_point_in_time_recovery = false
+enable_monitoring               = false
+
+# Project Metadata
+project_name = "your-project-name"
+environment  = "demo"
+owner        = "your-username"
+
+# Feature Flags
+create_iam_policy    = true
+enable_s3_versioning = true
+enable_s3_encryption = true
+
+# Optional: Additional tags for cost tracking
+additional_tags = {
+  CostCenter = "your-cost-center"
+  Purpose    = "terraform-state-backend"
+}

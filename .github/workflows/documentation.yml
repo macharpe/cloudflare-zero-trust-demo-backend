@@ -1,0 +1,30 @@
+name: Generate terraform docs
+
+on:
+  pull_request: # Triggers on PR creation/update
+  push:
+    branches:
+      - main # Triggers on merge to main
+
+# Add this to override default write-all permissions
+permissions: read-all
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: 📁 Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: 📁 Render README.md file
+        uses: terraform-docs/gh-actions@e47bfa196e79fa50987ef391be236d9d97b0c786 # v1.4.1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
