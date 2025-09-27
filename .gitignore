@@ -63,3 +63,6 @@ Thumbs.db
 # Claude
 .Claude
 CLAUDE.md
+
+# envrc
+.envrc
