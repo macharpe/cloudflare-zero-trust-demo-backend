@@ -1,0 +1,21 @@
+formatter: "markdown table"
+header-from: main.tf
+footer-from: ""
+recursive:
+  enabled: false
+sections:
+  hide: []
+  show: []
+sort:
+  enabled: true
+  by: name
+settings:
+  anchor: true
+  color: true
+  html: true
+  indent: 2
+  escape: false
+  default: true
+  required: true
+  sensitive: true
+  type: true
