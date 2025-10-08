@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2025-10-08
+
+### Added
+
+- Automated release workflow that creates GitHub releases from CHANGELOG.md updates
+- Release workflow automatically tags versions and generates release notes
+
 ## [1.0.1] - 2025-10-08
 
 ### Fixed
@@ -51,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security features documentation
 - Auto-generated Terraform documentation
 
-[Unreleased]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/releases/tag/v1.0.0
