@@ -49,16 +49,19 @@ resource "random_id" "backend_suffix" {
 # S3 Bucket for Terraform State Storage
 #======================================================
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "tf-state-cf-zero-trust-${random_id.backend_suffix.hex}"
+  bucket = "${var.s3_bucket_prefix}-${random_id.backend_suffix.hex}"
 
   lifecycle {
     prevent_destroy = true # Extra protection against accidental deletion
   }
 
-  tags = {
-    Name        = "Terraform State Bucket"
-    Description = "Stores Terraform state for Cloudflare Zero Trust Demo"
-  }
+  tags = merge(
+    {
+      Name        = "Terraform State Bucket"
+      Description = "Stores Terraform state for Cloudflare Zero Trust Demo"
+    },
+    var.additional_tags
+  )
 }
 
 # Enable versioning for state file history
@@ -152,10 +155,13 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     prevent_destroy = true # Extra protection against accidental deletion
   }
 
-  tags = {
-    Name        = "Terraform State Lock Table"
-    Description = "Provides state locking for Terraform operations"
-  }
+  tags = merge(
+    {
+      Name        = "Terraform State Lock Table"
+      Description = "Provides state locking for Terraform operations"
+    },
+    var.additional_tags
+  )
 }
 
 #======================================================
@@ -198,10 +204,13 @@ resource "aws_iam_policy" "terraform_state_access" {
     ]
   })
 
-  tags = {
-    Name        = "Terraform State Access Policy"
-    Description = "Grants access to Terraform state resources"
-  }
+  tags = merge(
+    {
+      Name        = "Terraform State Access Policy"
+      Description = "Grants access to Terraform state resources"
+    },
+    var.additional_tags
+  )
 }
 
 #======================================================
@@ -223,7 +232,10 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_errors" {
     TableName = aws_dynamodb_table.terraform_state_lock.name
   }
 
-  tags = {
-    Name = "Terraform State Lock Monitoring"
-  }
+  tags = merge(
+    {
+      Name = "Terraform State Lock Monitoring"
+    },
+    var.additional_tags
+  )
 }

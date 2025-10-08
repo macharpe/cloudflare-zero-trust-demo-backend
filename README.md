@@ -45,7 +45,7 @@ Backend Infrastructure (Persistent)
 
 ```bash
 # Navigate to backend project
-cd /Users/macharpe/Documents/4-github/cloudflare-zero-trust-demo-backend
+cd cloudflare-zero-trust-demo-backend
 
 # Initialize Terraform
 terraform init
@@ -77,7 +77,7 @@ terraform {
 
 ```bash
 # In your main demo project directory
-cd /Users/macharpe/Documents/4-github/terraform-cloudflare-zero-trust-demo
+cd terraform-cloudflare-zero-trust-demo
 
 # Backup current state
 cp tfstate/terraform.tfstate tfstate/terraform.tfstate.backup-$(date +%Y%m%d-%H%M%S)

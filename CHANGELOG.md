@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-10-08
+
+### Fixed
+
+- Remove hardcoded personal file paths from README.md deployment instructions
+- Replace absolute paths with generic project directory names for better portability
+- Use `s3_bucket_prefix` variable instead of hardcoded prefix in S3 bucket name
+- Merge `additional_tags` variable into all resource tags for proper tag propagation
+
 ## [1.0.0] - 2025-09-27
 
 ### Added
@@ -42,5 +51,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security features documentation
 - Auto-generated Terraform documentation
 
-[Unreleased]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/macharpe/cloudflare-zero-trust-demo-backend/releases/tag/v1.0.0
